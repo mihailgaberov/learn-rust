@@ -59,18 +59,6 @@ impl Game {
     pub fn draw(&self) {
         clear_background(color_u8!(255, 255, 255, 255));
 
-        draw_poly_lines(
-            self.player_state.position.x,
-            self.player_state.position.y,
-            3,
-            10.,
-            self.player_state.rotation * 180. / std::f32::consts::PI - 90.,
-            2.,
-            BLACK,
-        );
-
-        draw_box(Vec2::new(400f32, 200f32), Vec2::new(50f32, 20f32));
-
         draw_texture_ex(
             self.texture,
             self.player_state.position.x,
@@ -81,6 +69,8 @@ impl Game {
                 ..Default::default()
             },
         );
+
+        draw_box(Vec2::new(400f32, 200f32), Vec2::new(50f32, 20f32));
     }
 }
 
