@@ -1,4 +1,7 @@
 use macroquad::prelude::*;
+mod ws;
+
+use ws::Connection;
 
 pub struct PlayerState {
     pub position: Vec2,
@@ -88,8 +91,15 @@ fn draw_box(pos: Vec2, size: Vec2) {
 
 #[macroquad::main("game")]
 async fn main() {
+    let mut connection = Connection::new();
+    connection.connect("ws://localhost:3030/game");
+
     let mut game = Game::new().await;
     loop {
+        if let Some(msg) = connection.poll() {
+            println!("Message received! {:?}", msg);
+        }
+        
         game.update();
         game.draw();
         if game.quit {
