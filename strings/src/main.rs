@@ -13,4 +13,10 @@ fn main() {
 
     let ss = format!("{}-{}-{}", s1, s2, s3);
     println!("ss: {}", ss);
+
+
+    let hello = "Здравейте";
+
+    let sss = &hello[0..4];
+    println!("sss: {}", sss);
 }
