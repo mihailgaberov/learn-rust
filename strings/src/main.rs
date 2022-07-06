@@ -19,4 +19,8 @@ fn main() {
 
     let sss = &hello[0..4];
     println!("sss: {}", sss);
+
+    for c in hello.chars() {
+        println!("c {}", c)
+    }
 }
