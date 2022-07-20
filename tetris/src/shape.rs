@@ -8,13 +8,22 @@ pub struct Shape {
     anchor: Pos,
 }
 
+macro_rules! impl_shape_constructor {
+    ($( $new:ident: [ $( $pos:expr ),* ] anchored at $anchor:expr; )*) => {
+        $(
+            pub fn $new() -> Self {
+                Self {
+                    positions: [$( $pos ),*].into_iter().collect(),
+                    anchor: $anchor,
+                }
+            }
+        )*
+    };
+}
+
 impl Shape {
-    pub fn new_i() -> Self {
-        Self {
-            positions: [Pos(0, 0), Pos(1, 0), Pos(2, 0), Pos(3, 0)]
-                .into_iter()
-                .collect(),
-            anchor: Pos(1, 0),
-        }
+    impl_shape_constructor! {
+        new_i: [Pos(0, 0), Pos(1, 0), Pos(2, 0), Pos(3, 0)] anchored at Pos(1, 0);
+        new_o: [Pos(0, 0), Pos(1, 0), Pos(0, 1), Pos(1, 1)] anchored at Pos(0, 0);
     }
 }
